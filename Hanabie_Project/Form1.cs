@@ -1,4 +1,5 @@
 ﻿using Hanabie_Project.Marcas;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace Hanabie_Project
@@ -9,8 +10,15 @@ namespace Hanabie_Project
         public Form1()
         {
             InitializeComponent();
+            CultureInfo customCulture = (CultureInfo)CultureInfo.CurrentCulture.Clone();
+            customCulture.NumberFormat.NumberDecimalSeparator = ".";
+            CultureInfo.DefaultThreadCurrentCulture = customCulture;
+            CultureInfo.DefaultThreadCurrentUICulture = customCulture;
             this.tools = new Tools();
             tools.tools.AddRange(Nishin.CarregarEndmill());
+            tools.tools.AddRange(Nishin.CarregarBallEndmill());
+            tools.tools.AddRange(Nishin.CarregarRadiusEndmill());
+            dataGridView1.AutoGenerateColumns = false;
             // Use um SortableBindingList em vez de uma lista simples
             SortableBindingList<Tools> sortableList = new SortableBindingList<Tools>(tools.tools);
             dataGridView1.DataSource = sortableList;
@@ -25,7 +33,7 @@ namespace Hanabie_Project
                 (string.IsNullOrEmpty(mark) || mark == "ALL" || tool.Mark == mark) &&
                  (string.IsNullOrEmpty(type) || type == "ALL" || tool.Type == type) &&
                 (string.IsNullOrEmpty(id) || tool.ID.Contains(id)) &&
-                (!laminas.HasValue || tool.Laminas >= laminas.Value) &&
+                (!laminas.HasValue || tool.Laminas == laminas.Value) &&
                 (!kei.HasValue || tool.Kei <= kei.Value) &&
                 (!kubushita.HasValue || tool.Kubushita >= kubushita.Value) &&
                 (!hachou.HasValue || tool.Hachou >= hachou.Value) &&
@@ -42,8 +50,18 @@ namespace Hanabie_Project
             {
                 column.SortMode = DataGridViewColumnSortMode.Automatic;
             }
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "メーカー", DataPropertyName = "Mark" });
+
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "タイプ", DataPropertyName = "Type" });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "ID", DataPropertyName = "ID" });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "刃", DataPropertyName = "Laminas"});
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "径", DataPropertyName = "Kei"});
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "首下", DataPropertyName = "Kubushita" });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "刃長", DataPropertyName = "Hachou" });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "角", DataPropertyName = "Kado" });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "全長", DataPropertyName = "Zenchou"});
         }
-        private void UpdateDataGridView()
+            private void UpdateDataGridView()
 
         {
             string mark = Mark_ComboBox.SelectedIndex != -1 ? Mark_ComboBox.SelectedItem.ToString() : null;
