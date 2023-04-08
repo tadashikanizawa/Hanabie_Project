@@ -9,6 +9,8 @@ namespace Hanabie_Project.Marcas
 {
     public class Tools
     {
+        public string Mark { get;set; }
+        public string Type { get;set; }
         public string ID { get; set; }
         public int Laminas { get; set; }
         public float Kei { get; set; }
@@ -19,6 +21,8 @@ namespace Hanabie_Project.Marcas
 
 
         public List<Tools> tools { get; set; } = new List<Tools>();
+
+
 
     }
 }
