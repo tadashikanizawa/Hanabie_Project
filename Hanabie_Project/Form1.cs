@@ -53,7 +53,7 @@ namespace Hanabie_Project
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "メーカー", DataPropertyName = "Mark" });
 
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "タイプ", DataPropertyName = "Type" });
-            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "ID", DataPropertyName = "ID" });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "ID", DataPropertyName = "ID", Name = "ID" });
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "刃", DataPropertyName = "Laminas"});
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "径", DataPropertyName = "Kei"});
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "首下", DataPropertyName = "Kubushita" });
