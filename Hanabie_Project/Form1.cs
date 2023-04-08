@@ -18,6 +18,9 @@ namespace Hanabie_Project
             tools.tools.AddRange(Nishin.CarregarEndmill());
             tools.tools.AddRange(Nishin.CarregarBallEndmill());
             tools.tools.AddRange(Nishin.CarregarRadiusEndmill());
+            tools.tools.AddRange(OSG.CarregarVMFE());
+            tools.tools.AddRange(OSG.CarregarVML());
+            tools.tools.AddRange(OSG.CarregarVMS());
             dataGridView1.AutoGenerateColumns = false;
             // Use um SortableBindingList em vez de uma lista simples
             SortableBindingList<Tools> sortableList = new SortableBindingList<Tools>(tools.tools);
@@ -51,17 +54,17 @@ namespace Hanabie_Project
                 column.SortMode = DataGridViewColumnSortMode.Automatic;
             }
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "メーカー", DataPropertyName = "Mark" });
-
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "タイプ", DataPropertyName = "Type" });
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "ID", DataPropertyName = "ID", Name = "ID" });
-            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "刃", DataPropertyName = "Laminas"});
-            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "径", DataPropertyName = "Kei"});
-            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "首下", DataPropertyName = "Kubushita" });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "径", DataPropertyName = "Kei" });
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "刃長", DataPropertyName = "Hachou" });
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "角", DataPropertyName = "Kado" });
-            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "全長", DataPropertyName = "Zenchou"});
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "刃", DataPropertyName = "Laminas" });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "首下", DataPropertyName = "Kubushita" });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "全長", DataPropertyName = "Zenchou" });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "型番", DataPropertyName = "Kataban" });
         }
-            private void UpdateDataGridView()
+        private void UpdateDataGridView()
 
         {
             string mark = Mark_ComboBox.SelectedIndex != -1 ? Mark_ComboBox.SelectedItem.ToString() : null;

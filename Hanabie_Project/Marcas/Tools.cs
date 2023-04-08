@@ -18,7 +18,7 @@ namespace Hanabie_Project.Marcas
         public float Hachou { get; set; }
         public float Kado { get; set; }
         public float Zenchou { get; set; }
-
+        public float Kataban { get;set; }
 
         public List<Tools> tools { get; set; } = new List<Tools>();
 
