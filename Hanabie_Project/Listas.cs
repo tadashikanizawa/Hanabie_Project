@@ -14,7 +14,7 @@ namespace Hanabie_Project
         ALL,
         日進ツール,
         OSG,
-        オニオン,
+        ユニオン,
     }
     public enum Types
     {

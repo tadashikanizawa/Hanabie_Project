@@ -9,14 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="TextTemplate1.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>TextTemplate1.tt</DependentUpon>
-    </None>
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="Nishin - BallEndmill.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -24,6 +16,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Nishin - RadiusEndmill.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Onion-Ball.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="OSG - AE-VMFE.csv">
@@ -34,10 +29,6 @@
     </None>
     <None Update="OSG - AE-VMS.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="TextTemplate1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>TextTemplate1.cs</LastGenOutput>
     </None>
   </ItemGroup>
 

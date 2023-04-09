@@ -21,6 +21,7 @@ namespace Hanabie_Project
             tools.tools.AddRange(OSG.CarregarVMFE());
             tools.tools.AddRange(OSG.CarregarVML());
             tools.tools.AddRange(OSG.CarregarVMS());
+            tools.tools.AddRange(Onion.CarregarBall());
             dataGridView1.AutoGenerateColumns = false;
             // Use um SortableBindingList em vez de uma lista simples
             SortableBindingList<Tools> sortableList = new SortableBindingList<Tools>(tools.tools);
@@ -73,12 +74,12 @@ namespace Hanabie_Project
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "メーカー", DataPropertyName = "Mark" });
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "タイプ", DataPropertyName = "Type" });
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "ID", DataPropertyName = "ID", Name = "ID" });
-            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "径", DataPropertyName = "Kei" });
-            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "刃長", DataPropertyName = "Hachou" });
-            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "角", DataPropertyName = "Kado" });
-            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "刃", DataPropertyName = "Laminas" });
-            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "首下", DataPropertyName = "Kubushita" });
-            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "全長", DataPropertyName = "Zenchou" });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "径（Ø)", DataPropertyName = "Kei" });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "刃長(MM)", DataPropertyName = "Hachou" });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "角(R)", DataPropertyName = "Kado" });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "枚刃(数)", DataPropertyName = "Laminas" });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "首下(MM)", DataPropertyName = "Kubushita" });
+            dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "全長(Ø)", DataPropertyName = "Zenchou" });
             dataGridView1.Columns.Add(new DataGridViewTextBoxColumn { HeaderText = "型番", DataPropertyName = "Kataban" });
         }
         private void UpdateDataGridView()

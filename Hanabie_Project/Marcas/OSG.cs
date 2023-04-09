@@ -10,7 +10,6 @@ namespace Hanabie_Project.Marcas
 {
     internal class OSG: Tools
     {
-        public int Shanko { get; set; } 
 
 
 
@@ -30,7 +29,7 @@ namespace Hanabie_Project.Marcas
 
                     var item = new OSG();
                     item.ID = values[0];
-                    item.Kataban = int.Parse(values[1], CultureInfo.InvariantCulture);
+                    item.Kataban = values[1];
                     var parts = values[2].Split('×');
 
                     if (parts.Length > 0) item.Kei = float.Parse(parts[0].Replace("φ", ""), CultureInfo.InvariantCulture);
@@ -65,7 +64,7 @@ namespace Hanabie_Project.Marcas
 
                     var item = new OSG();
                     item.ID = values[0];
-                    item.Kataban = int.Parse(values[1], CultureInfo.InvariantCulture);
+                    item.Kataban = values[1];
                     var parts = values[2].Split('×');
 
                     if (parts.Length > 0) item.Kei = float.Parse(parts[0].Replace("φ", ""), CultureInfo.InvariantCulture);
@@ -103,7 +102,7 @@ namespace Hanabie_Project.Marcas
 
                     var item = new OSG();
                     item.ID = values[0];
-                    item.Kataban = int.Parse(values[1], CultureInfo.InvariantCulture);
+                    item.Kataban = values[1];
                     var parts = values[2].Replace("- RA", "").Split('×');
 
                     if (parts.Length > 0) item.Kei = float.Parse(parts[0].Replace("φ", ""), CultureInfo.InvariantCulture);
