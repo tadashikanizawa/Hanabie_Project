@@ -219,5 +219,19 @@ namespace Hanabie_Project
         {
             UpdateDataGridView();
         }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            // Defina o link como visitado
+            ((LinkLabel)sender).LinkVisited = true;
+
+            // Abra o link no navegador padrão
+            var processStartInfo = new System.Diagnostics.ProcessStartInfo
+            {
+                FileName = "https://github.com/tadashikanizawa/Hanabie_Project",
+                UseShellExecute = true
+            };
+            System.Diagnostics.Process.Start(processStartInfo);
+        }
     }
 }

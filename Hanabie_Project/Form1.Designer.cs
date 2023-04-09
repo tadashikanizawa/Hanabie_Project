@@ -54,6 +54,7 @@
             checkBoxLaminas = new CheckBox();
             label9 = new Label();
             label10 = new Label();
+            linkLabel1 = new LinkLabel();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -299,12 +300,24 @@
             label10.TabIndex = 25;
             label10.Text = "タイプ";
             // 
+            // linkLabel1
+            // 
+            linkLabel1.AutoSize = true;
+            linkLabel1.Location = new Point(1336, 434);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new Size(70, 15);
+            linkLabel1.TabIndex = 26;
+            linkLabel1.TabStop = true;
+            linkLabel1.Text = "SourceCode";
+            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlDarkDark;
             ClientSize = new Size(1418, 458);
+            Controls.Add(linkLabel1);
             Controls.Add(label10);
             Controls.Add(label9);
             Controls.Add(checkBoxLaminas);
@@ -332,7 +345,7 @@
             Controls.Add(Zenchou_Textbox);
             Controls.Add(dataGridView1);
             Name = "Form1";
-            Text = "Hanabie_Project";
+            Text = "Tools Search System(Sample)";
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
@@ -367,5 +380,6 @@
         private CheckBox checkBoxLaminas;
         private Label label9;
         private Label label10;
+        private LinkLabel linkLabel1;
     }
 }
