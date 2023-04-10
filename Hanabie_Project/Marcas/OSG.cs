@@ -5,13 +5,94 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Hanabie_Project.Marcas
 {
     internal class OSG: Tools
     {
+        public string Page { get; set; }
+        public static List<OSG> LoadProductsFromXml(string xmlFilePath)
+        {
+            XDocument xmlDoc = XDocument.Load(xmlFilePath);
+            var products = xmlDoc.Descendants("Table")
+                                 .Elements("TR")
+                                 .Where(tr => tr.Elements("TH").Any() && tr.Elements("TD").Any(td => ContainsNumber(td.Value))) // Seleciona as linhas que contêm elementos <TH> e contêm algum número em <TD>
+                                 .Select(tr =>
+                                 {
+                                     var keiAndKubushita = tr.Elements("TD").ElementAtOrDefault(0)?.Value.Split(new[] { '×' }, StringSplitOptions.RemoveEmptyEntries);
+
+                                     var keiMatches = Regex.Match(keiAndKubushita?.ElementAtOrDefault(0)?.Trim() ?? "", @"(?<number>[-+]?\d*\.?\d+)(?<letters>[a-zA-Z]*)");
+                                     float.TryParse(keiMatches.Groups["number"].Value, out float kei);
+                                     string keiLetters = keiMatches.Groups["letters"].Value;
+
+                                     var kubushitaMatches = Regex.Match(keiAndKubushita?.ElementAtOrDefault(1)?.Trim() ?? "", @"(?<number>[-+]?\d*\.?\d+)(?<letters>[a-zA-Z]*)");
+                                     float.TryParse(kubushitaMatches.Groups["number"].Value, out float kubushita);
+                                     string kubushitaLetters = kubushitaMatches.Groups["letters"].Value;
+
+                                     float.TryParse(tr.Elements("TD").ElementAtOrDefault(1)?.Value, out float hachou);
+                                     int.TryParse(tr.Elements("TD").ElementAtOrDefault(2)?.Value, out int zenchou);
+                                     int.TryParse(tr.Elements("TD").ElementAtOrDefault(3)?.Value, out int shanko);
+
+                                     return new OSG
+                                     {
+                                         ID = tr.Elements("TH").FirstOrDefault()?.Value,
+                                         Kei = kei,
+                                         //KeiLetters = keiLetters,
+                                         Kubushita = kubushita,
+                                         //KubushitaLetters = kubushitaLetters,
+                                         Hachou = hachou,
+                                         Zenchou = zenchou,
+                                         Shanko = shanko,
+                                         Page = tr.Elements("TD").ElementAtOrDefault(4)?.Value,
+                                         Mark = Marks.OSG.ToString(),
+                                     Type = Types.エンドミル.ToString(),
+                                     };
+                                 })
+                                 .ToList();
+
+            return products;
+        }
 
 
+        //public static List<OSG> LoadProductsFromXml(string xmlFilePath)
+        //{
+        //    XDocument xmlDoc = XDocument.Load(xmlFilePath);
+        //    var products = xmlDoc.Descendants("Table")
+        //                         .Elements("TR")
+        //                         .Where(tr => tr.Elements("TH").Any() && tr.Elements("TD").Any(td => ContainsNumber(td.Value))) // Seleciona as linhas que contêm elementos <TH> e contêm algum número em <TD>
+        //                         .Select(tr =>
+        //                         {
+        //                             var keiAndKubushita = tr.Elements("TD").ElementAtOrDefault(0)?.Value.Split(new[] { '×' }, StringSplitOptions.RemoveEmptyEntries);
+        //                             float.TryParse(keiAndKubushita?.ElementAtOrDefault(0)?.Trim(), out float kei);
+        //                             float.TryParse(keiAndKubushita?.ElementAtOrDefault(1)?.Trim(), out float kubushita);
+        //                             float.TryParse(tr.Elements("TD").ElementAtOrDefault(1)?.Value, out float hachou);
+        //                             int.TryParse(tr.Elements("TD").ElementAtOrDefault(2)?.Value, out int zenchou);
+        //                             int.TryParse(tr.Elements("TD").ElementAtOrDefault(3)?.Value, out int shanko);
+
+        //                             return new OSG
+        //                             {
+        //                                 ID = tr.Elements("TH").FirstOrDefault()?.Value,
+        //                                 Kei = kei,
+        //                                 Kubushita = kubushita,
+        //                                 Hachou = hachou,
+        //                                 Zenchou = zenchou,
+        //                                 Shanko = shanko,
+        //                                 Page = tr.Elements("TD").ElementAtOrDefault(4)?.Value,
+        //                                 Mark = Marks.OSG.ToString(),
+        //                                 Type = Types.エンドミル.ToString(),
+        //                             };
+        //                         })
+        //                         .ToList();
+
+        //    return products;
+        //}
+
+
+        private static bool ContainsNumber(string input)
+        {
+            return Regex.IsMatch(input, @"\d");
+        }
 
         public static List<Tools> CarregarVMFE()
         {

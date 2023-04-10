@@ -22,6 +22,7 @@ namespace Hanabie_Project
             tools.tools.AddRange(OSG.CarregarVML());
             tools.tools.AddRange(OSG.CarregarVMS());
             tools.tools.AddRange(Onion.CarregarBall());
+            tools.tools.AddRange(OSG.LoadProductsFromXml("OSG-Endmill.xml"));   
             dataGridView1.AutoGenerateColumns = false;
             // Use um SortableBindingList em vez de uma lista simples
             SortableBindingList<Tools> sortableList = new SortableBindingList<Tools>(tools.tools);
